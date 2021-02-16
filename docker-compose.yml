@@ -1,0 +1,19 @@
+version: "3.0"
+services:
+
+  portainer:
+    image: "portainer-ecr:rc1"
+    build: .
+    restart: always
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+    environment:
+      - REGISTORY_URL=${REGISTORY_URL}
+    ports:
+      - "8000:8000"
+      - "9000:9000"
+      - "80:80"
+
+volumes:
+  portainer_data:
